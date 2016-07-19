@@ -1,0 +1,587 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6DDB03D31C3496BC00186BD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDB03D21C3496BC00186BD4 /* AppDelegate.swift */; };
+		6DDB03D51C3496BC00186BD4 /* CMAudioRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDB03D41C3496BC00186BD4 /* CMAudioRecorderViewController.swift */; };
+		6DDB03D81C3496BC00186BD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DDB03D61C3496BC00186BD4 /* Main.storyboard */; };
+		6DDB03DB1C3496BC00186BD4 /* RecordReversedSound.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6DDB03D91C3496BC00186BD4 /* RecordReversedSound.xcdatamodeld */; };
+		6DDB03DD1C3496BC00186BD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DDB03DC1C3496BC00186BD4 /* Assets.xcassets */; };
+		6DDB03E01C3496BC00186BD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DDB03DE1C3496BC00186BD4 /* LaunchScreen.storyboard */; };
+		6DDB03EB1C3496BC00186BD4 /* RecordReversedSoundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDB03EA1C3496BC00186BD4 /* RecordReversedSoundTests.swift */; };
+		6DDB04011C3497A600186BD4 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DDB04001C3497A600186BD4 /* AssetsLibrary.framework */; };
+		6DDB04031C3497AB00186BD4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DDB04021C3497AB00186BD4 /* AVFoundation.framework */; };
+		6DDB04051C3497AE00186BD4 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DDB04041C3497AE00186BD4 /* CoreAudio.framework */; };
+		6DDB04141C3498B500186BD4 /* CYFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDB040C1C3498B500186BD4 /* CYFileManager.m */; };
+		6DDB04231C349A3700186BD4 /* CYDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDB041F1C349A3700186BD4 /* CYDevice.m */; };
+		6DDB04251C349A3700186BD4 /* CYDisk.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDB04221C349A3700186BD4 /* CYDisk.m */; };
+		6DDB04321C349CD100186BD4 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDB04311C349CD100186BD4 /* Box.swift */; };
+		6DDB043A1C349D7900186BD4 /* NSDate+CY.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDB04371C349D7900186BD4 /* NSDate+CY.m */; };
+		6DDB043D1C37023A00186BD4 /* CoverageTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDB043C1C37023A00186BD4 /* CoverageTime.swift */; };
+		6DDB043F1C37026400186BD4 /* CoverTimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDB043E1C37026400186BD4 /* CoverTimeFormatter.swift */; };
+		6DDB04561C370CEE00186BD4 /* CYFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDB04511C370CEE00186BD4 /* CYFileReader.m */; };
+		6DDB04571C370CEE00186BD4 /* CYOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDB04531C370CEE00186BD4 /* CYOutput.m */; };
+		6DDB045B1C370D1C00186BD4 /* CYUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDB045A1C370D1C00186BD4 /* CYUtilities.m */; };
+		6DDB045E1C38387500186BD4 /* CMAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDB045C1C38387500186BD4 /* CMAudioRecorder.m */; };
+		6DDB04601C38387D00186BD4 /* CYAudioFileWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDB045F1C38387D00186BD4 /* CYAudioFileWriter.swift */; };
+		6DDB04621C38923200186BD4 /* CMAudioRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDB04611C38923200186BD4 /* CMAudioRecorderView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6DDB03E71C3496BC00186BD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6DDB03C71C3496BC00186BD4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6DDB03CE1C3496BC00186BD4;
+			remoteInfo = RecordReversedSound;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6DDB03CF1C3496BC00186BD4 /* RecordReversedSound.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecordReversedSound.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DDB03D21C3496BC00186BD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6DDB03D41C3496BC00186BD4 /* CMAudioRecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMAudioRecorderViewController.swift; sourceTree = "<group>"; };
+		6DDB03D71C3496BC00186BD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6DDB03DA1C3496BC00186BD4 /* RecordReversedSound.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RecordReversedSound.xcdatamodel; sourceTree = "<group>"; };
+		6DDB03DC1C3496BC00186BD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6DDB03DF1C3496BC00186BD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6DDB03E11C3496BC00186BD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6DDB03E61C3496BC00186BD4 /* RecordReversedSoundTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecordReversedSoundTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DDB03EA1C3496BC00186BD4 /* RecordReversedSoundTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordReversedSoundTests.swift; sourceTree = "<group>"; };
+		6DDB03EC1C3496BC00186BD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6DDB04001C3497A600186BD4 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		6DDB04021C3497AB00186BD4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		6DDB04041C3497AE00186BD4 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		6DDB040B1C3498B500186BD4 /* CYFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYFileManager.h; sourceTree = "<group>"; };
+		6DDB040C1C3498B500186BD4 /* CYFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYFileManager.m; sourceTree = "<group>"; };
+		6DDB041C1C349A0B00186BD4 /* RecordReversedSoundBridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RecordReversedSoundBridging-Header.h"; sourceTree = "<group>"; };
+		6DDB041E1C349A3700186BD4 /* CYDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYDevice.h; sourceTree = "<group>"; };
+		6DDB041F1C349A3700186BD4 /* CYDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYDevice.m; sourceTree = "<group>"; };
+		6DDB04211C349A3700186BD4 /* CYDisk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYDisk.h; sourceTree = "<group>"; };
+		6DDB04221C349A3700186BD4 /* CYDisk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYDisk.m; sourceTree = "<group>"; };
+		6DDB04311C349CD100186BD4 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		6DDB04361C349D7900186BD4 /* NSDate+CY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CY.h"; sourceTree = "<group>"; };
+		6DDB04371C349D7900186BD4 /* NSDate+CY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CY.m"; sourceTree = "<group>"; };
+		6DDB043C1C37023A00186BD4 /* CoverageTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoverageTime.swift; sourceTree = "<group>"; };
+		6DDB043E1C37026400186BD4 /* CoverTimeFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoverTimeFormatter.swift; sourceTree = "<group>"; };
+		6DDB04501C370CEE00186BD4 /* CYFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYFileReader.h; sourceTree = "<group>"; };
+		6DDB04511C370CEE00186BD4 /* CYFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYFileReader.m; sourceTree = "<group>"; };
+		6DDB04521C370CEE00186BD4 /* CYOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYOutput.h; sourceTree = "<group>"; };
+		6DDB04531C370CEE00186BD4 /* CYOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYOutput.m; sourceTree = "<group>"; };
+		6DDB04591C370D1C00186BD4 /* CYUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYUtilities.h; sourceTree = "<group>"; };
+		6DDB045A1C370D1C00186BD4 /* CYUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYUtilities.m; sourceTree = "<group>"; };
+		6DDB045C1C38387500186BD4 /* CMAudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMAudioRecorder.m; sourceTree = "<group>"; };
+		6DDB045D1C38387500186BD4 /* CMAudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMAudioRecorder.h; sourceTree = "<group>"; };
+		6DDB045F1C38387D00186BD4 /* CYAudioFileWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CYAudioFileWriter.swift; sourceTree = "<group>"; };
+		6DDB04611C38923200186BD4 /* CMAudioRecorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMAudioRecorderView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6DDB03CC1C3496BC00186BD4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DDB04051C3497AE00186BD4 /* CoreAudio.framework in Frameworks */,
+				6DDB04031C3497AB00186BD4 /* AVFoundation.framework in Frameworks */,
+				6DDB04011C3497A600186BD4 /* AssetsLibrary.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DDB03E31C3496BC00186BD4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6DDB03C61C3496BC00186BD4 = {
+			isa = PBXGroup;
+			children = (
+				6DDB03D11C3496BC00186BD4 /* RecordReversedSound */,
+				6DDB03E91C3496BC00186BD4 /* RecordReversedSoundTests */,
+				6DDB04061C3497BA00186BD4 /* Frameworks */,
+				6DDB03D01C3496BC00186BD4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6DDB03D01C3496BC00186BD4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6DDB03CF1C3496BC00186BD4 /* RecordReversedSound.app */,
+				6DDB03E61C3496BC00186BD4 /* RecordReversedSoundTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6DDB03D11C3496BC00186BD4 /* RecordReversedSound */ = {
+			isa = PBXGroup;
+			children = (
+				6DDB03D41C3496BC00186BD4 /* CMAudioRecorderViewController.swift */,
+				6DDB04611C38923200186BD4 /* CMAudioRecorderView.swift */,
+				6DDB04091C3498B500186BD4 /* tools */,
+				6DDB04431C370B9400186BD4 /* supportingfiles */,
+			);
+			path = RecordReversedSound;
+			sourceTree = "<group>";
+		};
+		6DDB03E91C3496BC00186BD4 /* RecordReversedSoundTests */ = {
+			isa = PBXGroup;
+			children = (
+				6DDB03EA1C3496BC00186BD4 /* RecordReversedSoundTests.swift */,
+				6DDB03EC1C3496BC00186BD4 /* Info.plist */,
+			);
+			path = RecordReversedSoundTests;
+			sourceTree = "<group>";
+		};
+		6DDB04061C3497BA00186BD4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6DDB04041C3497AE00186BD4 /* CoreAudio.framework */,
+				6DDB04021C3497AB00186BD4 /* AVFoundation.framework */,
+				6DDB04001C3497A600186BD4 /* AssetsLibrary.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6DDB04091C3498B500186BD4 /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				6DDB04581C370D1100186BD4 /* utilities */,
+				6DDB044B1C370CEE00186BD4 /* writer */,
+				6DDB044F1C370CEE00186BD4 /* reader */,
+				6DDB04331C349D7900186BD4 /* date */,
+				6DDB041D1C349A3700186BD4 /* specs */,
+				6DDB040A1C3498B500186BD4 /* directory */,
+			);
+			path = tools;
+			sourceTree = "<group>";
+		};
+		6DDB040A1C3498B500186BD4 /* directory */ = {
+			isa = PBXGroup;
+			children = (
+				6DDB040B1C3498B500186BD4 /* CYFileManager.h */,
+				6DDB040C1C3498B500186BD4 /* CYFileManager.m */,
+			);
+			path = directory;
+			sourceTree = "<group>";
+		};
+		6DDB041D1C349A3700186BD4 /* specs */ = {
+			isa = PBXGroup;
+			children = (
+				6DDB041E1C349A3700186BD4 /* CYDevice.h */,
+				6DDB041F1C349A3700186BD4 /* CYDevice.m */,
+				6DDB04211C349A3700186BD4 /* CYDisk.h */,
+				6DDB04221C349A3700186BD4 /* CYDisk.m */,
+				6DDB04311C349CD100186BD4 /* Box.swift */,
+			);
+			path = specs;
+			sourceTree = "<group>";
+		};
+		6DDB04331C349D7900186BD4 /* date */ = {
+			isa = PBXGroup;
+			children = (
+				6DDB043E1C37026400186BD4 /* CoverTimeFormatter.swift */,
+				6DDB04361C349D7900186BD4 /* NSDate+CY.h */,
+				6DDB04371C349D7900186BD4 /* NSDate+CY.m */,
+				6DDB043C1C37023A00186BD4 /* CoverageTime.swift */,
+			);
+			path = date;
+			sourceTree = "<group>";
+		};
+		6DDB04431C370B9400186BD4 /* supportingfiles */ = {
+			isa = PBXGroup;
+			children = (
+				6DDB03D21C3496BC00186BD4 /* AppDelegate.swift */,
+				6DDB03D61C3496BC00186BD4 /* Main.storyboard */,
+				6DDB03DC1C3496BC00186BD4 /* Assets.xcassets */,
+				6DDB03DE1C3496BC00186BD4 /* LaunchScreen.storyboard */,
+				6DDB03E11C3496BC00186BD4 /* Info.plist */,
+				6DDB03D91C3496BC00186BD4 /* RecordReversedSound.xcdatamodeld */,
+				6DDB041C1C349A0B00186BD4 /* RecordReversedSoundBridging-Header.h */,
+			);
+			name = supportingfiles;
+			sourceTree = "<group>";
+		};
+		6DDB044B1C370CEE00186BD4 /* writer */ = {
+			isa = PBXGroup;
+			children = (
+				6DDB045F1C38387D00186BD4 /* CYAudioFileWriter.swift */,
+				6DDB045D1C38387500186BD4 /* CMAudioRecorder.h */,
+				6DDB045C1C38387500186BD4 /* CMAudioRecorder.m */,
+			);
+			path = writer;
+			sourceTree = "<group>";
+		};
+		6DDB044F1C370CEE00186BD4 /* reader */ = {
+			isa = PBXGroup;
+			children = (
+				6DDB04501C370CEE00186BD4 /* CYFileReader.h */,
+				6DDB04511C370CEE00186BD4 /* CYFileReader.m */,
+				6DDB04521C370CEE00186BD4 /* CYOutput.h */,
+				6DDB04531C370CEE00186BD4 /* CYOutput.m */,
+			);
+			path = reader;
+			sourceTree = "<group>";
+		};
+		6DDB04581C370D1100186BD4 /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+				6DDB04591C370D1C00186BD4 /* CYUtilities.h */,
+				6DDB045A1C370D1C00186BD4 /* CYUtilities.m */,
+			);
+			path = utilities;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6DDB03CE1C3496BC00186BD4 /* RecordReversedSound */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DDB03EF1C3496BC00186BD4 /* Build configuration list for PBXNativeTarget "RecordReversedSound" */;
+			buildPhases = (
+				6DDB03CB1C3496BC00186BD4 /* Sources */,
+				6DDB03CC1C3496BC00186BD4 /* Frameworks */,
+				6DDB03CD1C3496BC00186BD4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RecordReversedSound;
+			productName = RecordReversedSound;
+			productReference = 6DDB03CF1C3496BC00186BD4 /* RecordReversedSound.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6DDB03E51C3496BC00186BD4 /* RecordReversedSoundTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DDB03F21C3496BC00186BD4 /* Build configuration list for PBXNativeTarget "RecordReversedSoundTests" */;
+			buildPhases = (
+				6DDB03E21C3496BC00186BD4 /* Sources */,
+				6DDB03E31C3496BC00186BD4 /* Frameworks */,
+				6DDB03E41C3496BC00186BD4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6DDB03E81C3496BC00186BD4 /* PBXTargetDependency */,
+			);
+			name = RecordReversedSoundTests;
+			productName = RecordReversedSoundTests;
+			productReference = 6DDB03E61C3496BC00186BD4 /* RecordReversedSoundTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6DDB03C71C3496BC00186BD4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Barf;
+				TargetAttributes = {
+					6DDB03CE1C3496BC00186BD4 = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 6HLK9B549J;
+					};
+					6DDB03E51C3496BC00186BD4 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 6DDB03CE1C3496BC00186BD4;
+					};
+				};
+			};
+			buildConfigurationList = 6DDB03CA1C3496BC00186BD4 /* Build configuration list for PBXProject "RecordReversedSound" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6DDB03C61C3496BC00186BD4;
+			productRefGroup = 6DDB03D01C3496BC00186BD4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6DDB03CE1C3496BC00186BD4 /* RecordReversedSound */,
+				6DDB03E51C3496BC00186BD4 /* RecordReversedSoundTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6DDB03CD1C3496BC00186BD4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DDB03E01C3496BC00186BD4 /* LaunchScreen.storyboard in Resources */,
+				6DDB03DD1C3496BC00186BD4 /* Assets.xcassets in Resources */,
+				6DDB03D81C3496BC00186BD4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DDB03E41C3496BC00186BD4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6DDB03CB1C3496BC00186BD4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DDB04231C349A3700186BD4 /* CYDevice.m in Sources */,
+				6DDB045B1C370D1C00186BD4 /* CYUtilities.m in Sources */,
+				6DDB04141C3498B500186BD4 /* CYFileManager.m in Sources */,
+				6DDB043D1C37023A00186BD4 /* CoverageTime.swift in Sources */,
+				6DDB043A1C349D7900186BD4 /* NSDate+CY.m in Sources */,
+				6DDB03D51C3496BC00186BD4 /* CMAudioRecorderViewController.swift in Sources */,
+				6DDB04571C370CEE00186BD4 /* CYOutput.m in Sources */,
+				6DDB04621C38923200186BD4 /* CMAudioRecorderView.swift in Sources */,
+				6DDB03DB1C3496BC00186BD4 /* RecordReversedSound.xcdatamodeld in Sources */,
+				6DDB045E1C38387500186BD4 /* CMAudioRecorder.m in Sources */,
+				6DDB04251C349A3700186BD4 /* CYDisk.m in Sources */,
+				6DDB04321C349CD100186BD4 /* Box.swift in Sources */,
+				6DDB04561C370CEE00186BD4 /* CYFileReader.m in Sources */,
+				6DDB04601C38387D00186BD4 /* CYAudioFileWriter.swift in Sources */,
+				6DDB043F1C37026400186BD4 /* CoverTimeFormatter.swift in Sources */,
+				6DDB03D31C3496BC00186BD4 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DDB03E21C3496BC00186BD4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DDB03EB1C3496BC00186BD4 /* RecordReversedSoundTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6DDB03E81C3496BC00186BD4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6DDB03CE1C3496BC00186BD4 /* RecordReversedSound */;
+			targetProxy = 6DDB03E71C3496BC00186BD4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6DDB03D61C3496BC00186BD4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6DDB03D71C3496BC00186BD4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6DDB03DE1C3496BC00186BD4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6DDB03DF1C3496BC00186BD4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6DDB03ED1C3496BC00186BD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6DDB03EE1C3496BC00186BD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6DDB03F01C3496BC00186BD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = RecordReversedSound/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hatebyte.ios.backwords;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "RecordReversedSound/RecordReversedSoundBridging-Header.h";
+			};
+			name = Debug;
+		};
+		6DDB03F11C3496BC00186BD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = RecordReversedSound/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hatebyte.ios.backwords;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "RecordReversedSound/RecordReversedSoundBridging-Header.h";
+			};
+			name = Release;
+		};
+		6DDB03F31C3496BC00186BD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = RecordReversedSoundTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mylegfeelsfunny.-.RecordReversedSoundTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RecordReversedSound.app/RecordReversedSound";
+			};
+			name = Debug;
+		};
+		6DDB03F41C3496BC00186BD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = RecordReversedSoundTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mylegfeelsfunny.-.RecordReversedSoundTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RecordReversedSound.app/RecordReversedSound";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6DDB03CA1C3496BC00186BD4 /* Build configuration list for PBXProject "RecordReversedSound" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DDB03ED1C3496BC00186BD4 /* Debug */,
+				6DDB03EE1C3496BC00186BD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6DDB03EF1C3496BC00186BD4 /* Build configuration list for PBXNativeTarget "RecordReversedSound" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DDB03F01C3496BC00186BD4 /* Debug */,
+				6DDB03F11C3496BC00186BD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6DDB03F21C3496BC00186BD4 /* Build configuration list for PBXNativeTarget "RecordReversedSoundTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DDB03F31C3496BC00186BD4 /* Debug */,
+				6DDB03F41C3496BC00186BD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6DDB03D91C3496BC00186BD4 /* RecordReversedSound.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6DDB03DA1C3496BC00186BD4 /* RecordReversedSound.xcdatamodel */,
+			);
+			currentVersion = 6DDB03DA1C3496BC00186BD4 /* RecordReversedSound.xcdatamodel */;
+			path = RecordReversedSound.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 6DDB03C71C3496BC00186BD4 /* Project object */;
+}

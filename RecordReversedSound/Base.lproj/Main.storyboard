@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Audio Recorder View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="CMAudioRecorderViewController" customModule="RecordReversedSound" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="ku5-x3-hgs" customClass="CMAudioRecorderView" customModule="RecordReversedSound" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="av1-0h-2n9" userLabel="Start Button">
+                                <rect key="frame" x="20" y="50" width="100" height="40"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="6Hy-cN-UWA"/>
+                                    <constraint firstAttribute="width" constant="200" id="gsA-Jf-adX"/>
+                                </constraints>
+                                <state key="normal" title="Record Master">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="6Hy-cN-UWA"/>
+                                        <exclude reference="gsA-Jf-adX"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="6Hy-cN-UWA"/>
+                                        <include reference="gsA-Jf-adX"/>
+                                    </mask>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k35-W1-xQA" userLabel="Start Button">
+                                <rect key="frame" x="20" y="50" width="100" height="40"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="1W1-eC-Fch"/>
+                                    <constraint firstAttribute="width" constant="200" id="9ux-3d-oXF"/>
+                                </constraints>
+                                <state key="normal" title="Record Challenge">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="1W1-eC-Fch"/>
+                                        <exclude reference="9ux-3d-oXF"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="1W1-eC-Fch"/>
+                                        <include reference="9ux-3d-oXF"/>
+                                    </mask>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Il-Kq-jNP" userLabel="Start Button">
+                                <rect key="frame" x="20" y="50" width="100" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="C0y-FA-sRZ"/>
+                                    <constraint firstAttribute="height" constant="45" id="LJr-F3-4N0"/>
+                                </constraints>
+                                <state key="normal" title="Play Challenge">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="C0y-FA-sRZ"/>
+                                        <exclude reference="LJr-F3-4N0"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="C0y-FA-sRZ"/>
+                                        <include reference="LJr-F3-4N0"/>
+                                    </mask>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3OH-ay-USp" userLabel="Start Button">
+                                <rect key="frame" x="20" y="50" width="100" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Le3-b2-Y3D"/>
+                                    <constraint firstAttribute="width" constant="200" id="OCw-vI-znp"/>
+                                    <constraint firstAttribute="height" constant="45" id="S9h-gr-ieH"/>
+                                </constraints>
+                                <state key="normal" title="Play Master">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Le3-b2-Y3D"/>
+                                        <exclude reference="OCw-vI-znp"/>
+                                        <exclude reference="S9h-gr-ieH"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Le3-b2-Y3D"/>
+                                        <exclude reference="OCw-vI-znp"/>
+                                        <include reference="S9h-gr-ieH"/>
+                                    </mask>
+                                </variation>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5Il-Kq-jNP" firstAttribute="centerX" secondItem="ku5-x3-hgs" secondAttribute="centerX" id="24m-gV-hus"/>
+                            <constraint firstItem="av1-0h-2n9" firstAttribute="centerX" secondItem="ku5-x3-hgs" secondAttribute="centerX" id="Qh9-Lu-AEl"/>
+                            <constraint firstItem="av1-0h-2n9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="Tco-Gz-SUN">
+                                <variation key="widthClass=compact" constant="100"/>
+                            </constraint>
+                            <constraint firstItem="k35-W1-xQA" firstAttribute="top" secondItem="3OH-ay-USp" secondAttribute="bottom" constant="97" id="VwV-dl-tbC"/>
+                            <constraint firstItem="5Il-Kq-jNP" firstAttribute="top" secondItem="k35-W1-xQA" secondAttribute="bottom" constant="19" id="ayD-Kw-otJ"/>
+                            <constraint firstItem="k35-W1-xQA" firstAttribute="centerX" secondItem="ku5-x3-hgs" secondAttribute="centerX" id="g16-lu-XL4"/>
+                            <constraint firstItem="3OH-ay-USp" firstAttribute="top" secondItem="av1-0h-2n9" secondAttribute="bottom" constant="19" id="nfM-IV-0B3"/>
+                            <constraint firstItem="3OH-ay-USp" firstAttribute="centerX" secondItem="ku5-x3-hgs" secondAttribute="centerX" id="sd2-Wq-1zt"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="k35-W1-xQA"/>
+                                <exclude reference="5Il-Kq-jNP"/>
+                                <exclude reference="3OH-ay-USp"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="Qh9-Lu-AEl"/>
+                                <exclude reference="Tco-Gz-SUN"/>
+                                <exclude reference="nfM-IV-0B3"/>
+                                <exclude reference="sd2-Wq-1zt"/>
+                                <exclude reference="VwV-dl-tbC"/>
+                                <exclude reference="g16-lu-XL4"/>
+                                <exclude reference="24m-gV-hus"/>
+                                <exclude reference="ayD-Kw-otJ"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="k35-W1-xQA"/>
+                                <include reference="5Il-Kq-jNP"/>
+                                <include reference="3OH-ay-USp"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="Qh9-Lu-AEl"/>
+                                <include reference="Tco-Gz-SUN"/>
+                                <include reference="nfM-IV-0B3"/>
+                                <include reference="sd2-Wq-1zt"/>
+                                <include reference="VwV-dl-tbC"/>
+                                <include reference="g16-lu-XL4"/>
+                                <include reference="24m-gV-hus"/>
+                                <include reference="ayD-Kw-otJ"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <outlet property="playChallengeButton" destination="5Il-Kq-jNP" id="74O-Mk-sHB"/>
+                            <outlet property="playMasterButton" destination="3OH-ay-USp" id="v3r-3B-XUf"/>
+                            <outlet property="recordChallengeButton" destination="k35-W1-xQA" id="QtU-lq-nUv"/>
+                            <outlet property="recordMasterButton" destination="av1-0h-2n9" id="ivy-t4-teu"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="444" y="269"/>
+        </scene>
+    </scenes>
+</document>

@@ -64,7 +64,6 @@
         self.isReading = NO;
         
         // infrom delegates of current frame
-        
     }
     
 }

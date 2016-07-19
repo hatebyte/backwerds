@@ -50,13 +50,9 @@ static mach_timebase_info_data_t info;
 @property(nonatomic, assign) uint64_t diffSinceLastTime;
 @property(nonatomic, assign) uint64_t startTime;
 
-
 - (void)cmSampleBuffer:(AudioBufferList *)audioBufferList
         numberOfFrames:(UInt32)inNumberFrames
                   time:(uint64_t)time;
-- (void)converToAAC:(AudioBufferList *)audioBufferList
-     numberOfFrames:(UInt32)inNumberFrames
-               time:(uint64_t)time;
 
 @end
 
@@ -152,87 +148,6 @@ OSStatus RecordingCallback(void *inRefCon,
     return noErr;
 }
 
-//static OSStatus ConvertDataProc(AudioConverterRef inAudioConverter,
-//                                UInt32 *ioNumberDataPackets,
-//                                AudioBufferList *ioData,
-//                                AudioStreamPacketDescription **outDataPacketDescription,
-//                                void *inUserData) {
-//    
-//    CMAudioRecorder *encoder                        = (__bridge CMAudioRecorder *)(inUserData);
-//    UInt32 requestedPackets                         = *ioNumberDataPackets;
-//    UInt32 copiedSamples                            = encoder.audioBuffer.mDataByteSize;
-//    if (copiedSamples < requestedPackets) {
-//        *ioNumberDataPackets                        = 0;
-//        return -1;
-//    }
-//    //    NSLog(@"ioNumberDataPackets   : %u", (unsigned int)*ioNumberDataPackets);
-//    ioData->mBuffers[0].mData                       = encoder.audioBuffer.mData;
-//    ioData->mBuffers[0].mDataByteSize               = encoder.audioBuffer.mDataByteSize;
-//    //    *ioNumberDataPackets                            = 1024;
-//    *ioNumberDataPackets = 1;//(*ioNumberDataPackets / kAudioSampleRate) * kAACSampleRate;
-//    
-//    //    *ioNumberDataPackets = (UInt32)encoder.audioBuffer.mDataByteSize / requestedPackets;
-//    
-//    //    NSLog(@"encoder.audioBuffer.mDataByteSize          : %d", (unsigned int)encoder.audioBuffer.mDataByteSize);
-//    //    NSLog(@"ioNumberDataPackets : %d", (unsigned int)ioNumberDataPackets);
-//    return noErr;
-//}
-
-//- (void)converToAAC:(AudioBufferList *)audioBufferList numberOfFrames:(UInt32)inNumberFrames time:(uint64_t)time {
-//    dispatch_sync(self.conversionQueue, ^{
-//        AudioBuffer sourceBuffer                    = audioBufferList->mBuffers[0];
-//        if (_audioBuffer.mDataByteSize != sourceBuffer.mDataByteSize) {
-//            free(_audioBuffer.mData);
-//            
-//            // assess new byte size and allocate them to mData
-//            _audioBuffer.mDataByteSize              = inNumberFrames * (kNumChannels * 2);
-//            _audioBuffer.mData                      = malloc(inNumberFrames * (kNumChannels * 2));
-//            _audioBuffer.mNumberChannels            = kNumChannels;
-//        }
-//        // copy incoming audio to the buffer
-//        memcpy(_audioBuffer.mData, audioBufferList->mBuffers[0].mData, audioBufferList->mBuffers[0].mDataByteSize);
-//        
-//        memset(_aacBuffer, 0, self.aacBufferSize);
-//        AudioBufferList aacOutBuffer                = {0};
-//        aacOutBuffer.mNumberBuffers                 = 1;
-//        aacOutBuffer.mBuffers[0].mNumberChannels    = kNumChannels;
-//        aacOutBuffer.mBuffers[0].mDataByteSize      = self.aacBufferSize;
-//        aacOutBuffer.mBuffers[0].mData              = _aacBuffer;
-//        
-//        AudioStreamPacketDescription *outDescription = NULL;
-//        UInt32 ioOutPacketSize                      = 1;
-//        
-//        CheckError(AudioConverterFillComplexBuffer(_audioConverter,
-//                                                   ConvertDataProc,
-//                                                   (__bridge void *)(self),
-//                                                   &ioOutPacketSize,
-//                                                   &aacOutBuffer,
-//                                                   outDescription),
-//                   "Could not convert pcm to aac with AudioConverterFillComplexBuffer");
-//        //        if (self.adjustedTime == 0) {
-//        //            self.adjustedTime = time;
-//        //        }
-//        //
-//        //        uint64_t diffTime                           = time - self.trueTime;
-//        //        NSLog(@"diffTime   : %llu", diffTime);
-//        //        diffTime                                    = (diffTime / kAudioSampleRate) * kAACSampleRate;
-//        //        self.adjustedTime += diffTime;
-//        //        self.trueTime    bb                               = time;
-//        //        NSLog(@"diffTime   : %llu\n\n", diffTime);
-//        //        NSLog(@"diffTime       : %llu\n\n", diffTime);
-//        
-//        
-////        double aacTime                              = ((double)(time) / (double)kDeviceTimeScale);
-////        NSData *rawAAC                              = [NSData dataWithBytes:aacOutBuffer.mBuffers[0].mData length:aacOutBuffer.mBuffers[0].mDataByteSize];
-//        
-//        // send to delegate
-////        [self.aacDelegate didConvertAACData:rawAAC time:aacTime];
-//        
-//        //        free(_audioBuffer.mData);
-//    });
-//    
-//}
-
 - (void)cmSampleBuffer:(AudioBufferList *)audioBufferList numberOfFrames:(UInt32)inNumberFrames time:(uint64_t)time {
     dispatch_sync(self.conversionQueue, ^{
         CMSampleBufferRef buff                      = NULL;
@@ -284,9 +199,9 @@ OSStatus RecordingCallback(void *inRefCon,
         
         [session setActive:YES error:nil];
         
-        //        NSLog(@"sampleRate : %u", (unsigned int)session.sampleRate);            // 44100
-        //        NSLog(@"ioBufferDuration : %f", session.IOBufferDuration);              // .023220
-        //        NSLog(@"aacBufferSize : %u\n\n", (unsigned int)self.aacBufferSize);     // 1024
+//        NSLog(@"sampleRate : %u", (unsigned int)session.sampleRate);            // 44100
+//        NSLog(@"ioBufferDuration : %f", session.IOBufferDuration);              // .023220
+//        NSLog(@"aacBufferSize : %u\n\n", (unsigned int)self.aacBufferSize);     // 1024
         if (!session.inputAvailable) {
             UIAlertView *noInputAlert               = [[UIAlertView alloc] initWithTitle:@"No audio input"
                                                                                  message:@"No audio input device is currently attached"
@@ -301,7 +216,6 @@ OSStatus RecordingCallback(void *inRefCon,
         mach_timebase_info(&info);
         
         [self setUpRecorder];
-//        [self setUpConverter];
         CheckError(AudioUnitInitialize(self.rioUnit), "Couldn't initialize RIO unit");
     }
 }
@@ -413,10 +327,10 @@ OSStatus RecordingCallback(void *inRefCon,
     printf("Interrupted! inInterruptionState=%u\n" , (unsigned int)inInterruptionState);
     switch (inInterruptionState) {
         case kAudioSessionBeginInterruption:
-            //            [self stopRecordering];
+//            [self stopRecordering];
             break;
         case kAudioSessionEndInterruption:
-            //            [self startRecordering];
+//            [self startRecordering];
             break;
         default:
             break;
@@ -444,10 +358,10 @@ OSStatus RecordingCallback(void *inRefCon,
     @synchronized(self) {
         _aacBuffer                              = malloc(self.aacBufferSize * sizeof(uint8_t));
         memset(_aacBuffer, 0, self.aacBufferSize);
-        
-        //        _audioBuffer.mNumberChannels                = kNumChannels;
-        //        _audioBuffer.mDataByteSize                  = self.aacBufferSize;
-        //        _audioBuffer.mData                          = malloc(self.aacBufferSize);
+
+//        _audioBuffer.mNumberChannels                = kNumChannels;
+//        _audioBuffer.mDataByteSize                  = self.aacBufferSize;
+//        _audioBuffer.mData                          = malloc(self.aacBufferSize);
     }
     
     
@@ -469,8 +383,6 @@ OSStatus RecordingCallback(void *inRefCon,
                                                  name:AVAudioSessionInterruptionNotification
                                                object:session];
 
-   
-//    self.lastTime                               = 0;
     self.startTime                              = 0;
     CheckError(AudioOutputUnitStart(self.rioUnit), "Couldn't start audio unit");
 }

@@ -77,11 +77,6 @@ static OSStatus OutputRenderCallback (void *inRefCon,
                                     &outputFormat,
                                     sizeof(outputFormat)), "AudioUnitSetProperty StreamFormat Failed");
    
-   
-    
-//    UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;
-//    CheckError(AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(sessionCategory), &sessionCategory), "");
-    
     
     // set up the render callback
     AURenderCallbackStruct callbackStruct;

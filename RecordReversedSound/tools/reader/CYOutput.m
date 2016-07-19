@@ -91,8 +91,6 @@ static OSStatus OutputRenderCallback (void *inRefCon,
                                     sizeof(callbackStruct)), "AudioUnitSetProperty SetRenderCallback Failed");
     // initialize the unit
     CheckError(AudioUnitInitialize(_audioUnit), "AudioUnitInitialize Failed");
-    
-
 }
 
 - (void)startOutputUnit {

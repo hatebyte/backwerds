@@ -49,7 +49,6 @@ class CMAudioRecorderViewController: UIViewController, CYOutputDataSource, CMAud
         
         CMAudioRecorder.shouldTryToAccessMicrophone { (granted:Bool) -> Void in
             if granted == true {
-
             }
         }
     }

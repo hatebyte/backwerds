@@ -1,5 +1,5 @@
 # backwerds
 
-Record yourself backwords. Play it forward. 
+Record yourself backwards. Play it forwards. 
 
 ITS HILARIOUS

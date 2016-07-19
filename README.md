@@ -4,9 +4,7 @@ Record yourself backwards. Play it forwards.
 
 ITS HILARIOUS
 
-
-Backwerds
-Love this little project as it provides a mountain of laughs. Also, good example of using some lower level core audio apis. 
+I love this little project as it provides a mountain of laughs. Also, good example of using some lower level core audio apis. 
 
 Step One - Record and Save Audio Backwards
 I recorded the audio via an `AudioOutputUnit` which takes the microphone buffer, reverses the bytes and converts it to a `CMSampleBufferRef`.  Then I pass this sample buffer to the viewcontroller who stores it an array. When recording is done, I empty this array FILO into a file writer. I now have the audio saved backwards.

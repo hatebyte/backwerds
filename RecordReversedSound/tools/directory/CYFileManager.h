@@ -11,7 +11,7 @@ extern char *StreamFileQueue;
 #import <Foundation/Foundation.h>
 
 typedef void (^CompleteWithPath)(NSString *documentPath);
-typedef void (^Complete)();
+typedef void (^Complete)(void);
 
 static const NSString *CaptureMediaDirectory = @"capturemedia";
 

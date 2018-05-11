@@ -14,7 +14,7 @@ class TimeParser: NSObject {
     var seconds:Int                                 = 0
     var clockFormatter                              = CoverTimeFormatter(adjustment:3)
     
-    func time(sampleBuffer:CMSampleBufferRef)->Box<CoverageTime> {
+    func time(sampleBuffer:CMSampleBuffer)->Box<CoverageTime> {
         if self.startFileTime.isValid == false {
             self.startFileTime                      = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
         }

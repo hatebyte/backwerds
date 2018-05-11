@@ -25,7 +25,7 @@ class CoverTimeFormatter: NSObject {
             return Box(c)
         }
         let t                       = secondsInt()
-        let c                       = (hours(t), minutes(t), seconds(t), milliseconds())
+        let c                       = (hours(time: t), minutes(time: t), seconds(time: t), milliseconds())
         return Box(c)
     }
     
@@ -41,19 +41,19 @@ class CoverTimeFormatter: NSObject {
     }
     
     func milliseconds()->String {
-        return String(NSString(format:"%.2f", fmod(self.time, 1)).substringFromIndex(2))
+        return String(NSString(format:"%.2f", fmod(self.time, 1)).substring(from: 2))
     }
 
     func seconds(time:Int)->String {
-        return "\(configure(time % 60))"
+        return "\(configure(number: time % 60))"
     }
     
     func minutes(time:Int)->String {
-        return "\(configure(minutesInt(time)))"
+        return "\(configure(number: minutesInt(time: time)))"
     }
     
     func hours(time:Int)->String {
-        return "\(configure(hoursInt(time)))"
+        return "\(configure(number: hoursInt(time: time)))"
     }
 
     func hoursInt(time:Int)->Int {

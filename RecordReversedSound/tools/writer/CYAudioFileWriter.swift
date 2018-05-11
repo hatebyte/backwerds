@@ -32,7 +32,7 @@ class CYAudioFileWriter: NSObject {
     private var mainAssetWriter:AVAssetWriter!
     var defaultFileName:String!
     var defaultDirectory:String!
-    let highResEncoderQueue                                                 = dispatch_queue_create("HighResEncoderQueue", DISPATCH_QUEUE_CONCURRENT);
+    let highResEncoderQueue                                                 = DispatchQueue(label: "HighResEncoderQueue", attributes: .concurrent)
     var errorDelegate:CYAudioFileWriterErrorDelegate?
 
     init(fileName:String, directory:String) {
@@ -42,8 +42,8 @@ class CYAudioFileWriter: NSObject {
         super.init()
         
         self.updateAssetWriter = {
-            self.mainAssetWriter                                            = try! AVAssetWriter(URL:self.fileURL, fileType:AVFileTypeMPEG4)
-            self.mainAssetWriter.addInput(self.audioInputWriter)
+            self.mainAssetWriter                                            = try! AVAssetWriter(outputURL:self.fileURL as URL, fileType:AVFileType.mp4)
+            self.mainAssetWriter.add(self.audioInputWriter)
         }
     }
     
@@ -53,8 +53,8 @@ class CYAudioFileWriter: NSObject {
     
     var fileURL:NSURL {
         get {
-            let docPath                                                     = CYFileManager.defaultManager().createAudioFilePathInDirectory(self.defaultDirectory, fileName: self.defaultFileName)
-            return NSURL.fileURLWithPath(docPath)
+            let docPath                                                     = CYFileManager.default().createAudioFilePath(inDirectory: self.defaultDirectory, fileName: self.defaultFileName)
+            return NSURL.fileURL(withPath: docPath!) as NSURL
         }
     }
     
@@ -63,68 +63,70 @@ class CYAudioFileWriter: NSObject {
         return temporaryAWriter
     }()
 
-    func finishWritingWithComplete(complete:()->()) {
+    func finishWritingWithComplete(complete:@escaping ()->()) {
         if let _ = self.mainAssetWriter {
-            if self.mainAssetWriter.status == .Writing  {
+            if self.mainAssetWriter.status == .writing  {
                 self.audioInputWriter.markAsFinished()
-                self.mainAssetWriter.finishWritingWithCompletionHandler({ () -> Void in
+                self.mainAssetWriter.finishWriting(completionHandler: { () -> Void in
                     complete()
                 })
             }
         }
     }
     
-    func cutRecording(complete:CloseFile) {
+    func cutRecording(complete:@escaping CloseFile) {
         weak var weakSelf:CYAudioFileWriter? = self
-        dispatch_barrier_async(self.highResEncoderQueue, {
-            let path                            = self.mainAssetWriter.outputURL.path!;
+        self.highResEncoderQueue.async(flags: .barrier) {
+            let path                            = self.mainAssetWriter.outputURL.path;
             weakSelf?.finishWritingWithComplete { () -> () in
 //                self.updateAssetWriter?()
-                dispatch_async(dispatch_get_main_queue(), {
+                
+                DispatchQueue.main.async {
                     complete(path)
-                })
+                }
             }
-        })
+        }
     }
     
-    func finishRecording(complete:CloseFile) {
+    func finishRecording(complete:@escaping CloseFile) {
         self.updateAssetWriter = nil
         weak var weakSelf:CYAudioFileWriter?                                = self
-        let path                                                            = self.mainAssetWriter.outputURL.path!;
-        dispatch_barrier_async(self.highResEncoderQueue, {
+        let path                                                            = self.mainAssetWriter.outputURL.path;
+        
+        self.highResEncoderQueue.async(flags: .barrier) {
             weakSelf?.finishWritingWithComplete { () -> () in
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async {
                     complete(path)
-                })
+                }
             }
-        })
+        }
     }
     
     func encodeSampleBuffer(sampleBuffer:CMSampleBuffer, isVideo:Bool) {
-        dispatch_barrier_async(self.highResEncoderQueue, {
+        self.highResEncoderQueue.async(flags: .barrier) {
             if self.mainAssetWriter == nil {
                 self.updateAssetWriter?()
             }
-        })
+        }
 
-        dispatch_sync(self.highResEncoderQueue, {
+        self.highResEncoderQueue.sync {
             let testBool:Bool                                               = CMSampleBufferDataIsReady(sampleBuffer) != false
             if testBool == true {
                 let currentTime                                             = CMSampleBufferGetOutputPresentationTimeStamp(sampleBuffer);
                 if let aw = self.mainAssetWriter {
-                    if aw.status == AVAssetWriterStatus.Unknown {
+                    if aw.status == AVAssetWriterStatus.unknown {
                         aw.startWriting()
-                        aw.startSessionAtSourceTime(currentTime)
+                        aw.startSession(atSourceTime: currentTime)
                     }
-                    if aw.status == AVAssetWriterStatus.Failed {
+                    if aw.status == AVAssetWriterStatus.failed {
                         print("AVAssetWriterStatus.Failed \(aw.status.rawValue) \(aw.error!.localizedDescription)");
                         // call high res error
                         // should inform the user some how
                         let error                                           = NSError(domain:CYAudioFileWriter.Domain, code:CYAudioFileWriterErrorCode.AVAssetWriterStatusFailed.rawValue, userInfo:nil)
-                        self.errorDelegate?.hdFileEncoderError(error)
+                        self.errorDelegate?.hdFileEncoderError(error: error)
                     } else {
-                        if self.audioInputWriter.readyForMoreMediaData == true {
-                            let worked = self.audioInputWriter.appendSampleBuffer(sampleBuffer);
+                        if self.audioInputWriter.isReadyForMoreMediaData == true {
+                            let worked = self.audioInputWriter.append(sampleBuffer);
                             if worked == false {
                                 print("_mainAssetWriter.status \(aw.status.rawValue)");
                             }
@@ -133,30 +135,30 @@ class CYAudioFileWriter: NSObject {
                 }
                 
             }
-        })
+        }
     }
     
     func createAudioInputWriter()->AVAssetWriterInput? {
-        let settings:[String : AnyObject]         = [
-            AVFormatIDKey                           : NSNumber(unsignedInt: kAudioFormatMPEG4AAC),
+        let settings:[String : Any]         = [
+            AVFormatIDKey                           : NSNumber(value: kAudioFormatMPEG4AAC),
             AVNumberOfChannelsKey                   : 2,
             AVSampleRateKey                         : 44100,
             AVEncoderBitRateKey                     : 64000
         ]
         
         var assetWriter:AVAssetWriterInput!
-        if self.mainAssetWriter.canApplyOutputSettings(settings, forMediaType:AVMediaTypeAudio) {
-            assetWriter                             = AVAssetWriterInput(mediaType:AVMediaTypeAudio, outputSettings:settings)
+        if self.mainAssetWriter.canApply(outputSettings: settings, forMediaType:AVMediaType.audio) {
+            assetWriter                             = AVAssetWriterInput(mediaType:AVMediaType.audio, outputSettings:settings)
             assetWriter.expectsMediaDataInRealTime  = true
-            if self.mainAssetWriter.canAddInput(assetWriter) {
-                self.mainAssetWriter.addInput(assetWriter)
+            if self.mainAssetWriter.canAdd(assetWriter) {
+                self.mainAssetWriter.add(assetWriter)
             } else {
                 let error = NSError(domain:CYAudioFileWriter.Domain, code:CYAudioFileWriterErrorCode.CantAddInput.rawValue, userInfo:nil)
-                self.errorDelegate?.hdFileEncoderError(error)
+                self.errorDelegate?.hdFileEncoderError(error: error)
             }
         } else {
             let error = NSError(domain:CYAudioFileWriter.Domain, code:CYAudioFileWriterErrorCode.CantApplyOutputSettings.rawValue, userInfo:nil)
-            self.errorDelegate?.hdFileEncoderError(error)
+            self.errorDelegate?.hdFileEncoderError(error: error)
         }
         return assetWriter
     }

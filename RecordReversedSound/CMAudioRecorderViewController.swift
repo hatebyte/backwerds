@@ -25,7 +25,7 @@ class CMAudioRecorderViewController: UIViewController, CYOutputDataSource, CMAud
     var dirPath:String = "recording"
     var backgroundTask:UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
     var startTime = CMTime()
-    var sampleBuffers = [CMSampleBufferRef]()
+    var sampleBuffers = [CMSampleBuffer]()
     
     var masterPath:String?
     var challengePath:String?
@@ -43,34 +43,34 @@ class CMAudioRecorderViewController: UIViewController, CYOutputDataSource, CMAud
         self.automaticallyAdjustsScrollViewInsets           = false
         self.theView.didLoad()
    
-        self.fileLocalDirectory                             = CYFileManager.defaultManager().documentDirectoryPathForName(self.dirPath)
-        _                                                   = NSURL.fileURLWithPath(self.fileLocalDirectory!, isDirectory: true).URLByDeletingLastPathComponent
-        CYFileManager.defaultManager().clearFilesFromDirectory(self.fileLocalDirectory)
+        self.fileLocalDirectory                             = CYFileManager.default().documentDirectoryPath(forName: self.dirPath)
+        _                                                   = NSURL.fileURL(withPath: self.fileLocalDirectory!, isDirectory: true).deletingLastPathComponent
+        CYFileManager.default().clearFiles(fromDirectory: self.fileLocalDirectory)
         
-        CMAudioRecorder.shouldTryToAccessMicrophone { (granted:Bool) -> Void in
+        CMAudioRecorder.shouldTry { (granted:Bool) -> Void in
             if granted == true {
             }
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let nc                                              = NSNotificationCenter.defaultCenter()
-        nc.addObserver(self, selector: #selector(willEnterBackground), name: UIApplicationWillResignActiveNotification, object: nil)
-        nc.addObserver(self, selector: #selector(willEnterForeground), name: UIApplicationDidBecomeActiveNotification, object: nil)
+        let nc                                              = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(willEnterBackground), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
+        nc.addObserver(self, selector: #selector(willEnterForeground), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        let nc                                              = NSNotificationCenter.defaultCenter()
-        nc.removeObserver(self, name: UIApplicationWillResignActiveNotification, object:nil)
-        nc.removeObserver(self, name: UIApplicationDidBecomeActiveNotification, object:nil)
+        let nc                                              = NotificationCenter.default
+        nc.removeObserver(self, name: NSNotification.Name.UIApplicationWillResignActive, object:nil)
+        nc.removeObserver(self, name: NSNotification.Name.UIApplicationDidBecomeActive, object:nil)
         
         self.removeButtonHandlers()
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
     }
@@ -86,108 +86,108 @@ class CMAudioRecorderViewController: UIViewController, CYOutputDataSource, CMAud
         self.addButtonHandlers()
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.Portrait
-    }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
-    }
-    
-    override func prefersStatusBarHidden() -> Bool {
-        return false
-    }
-    
-    override func shouldAutorotate() -> Bool {
-        return true
-    }
+//    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+//        return UIInterfaceOrientationMask.portrait
+//    }
+//
+//    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+//        return UIStatusBarStyle.lightContent
+//    }
+//
+//    override func prefersStatusBarHidden() -> Bool {
+//        return false
+//    }
+//
+//    override func shouldAutorotate() -> Bool {
+//        return true
+//    }
     
     private func addButtonHandlers() {
-        self.theView.recordMasterButton!.addTarget(self,    action: #selector(recordMaster),   forControlEvents: UIControlEvents.TouchUpInside)
-        self.theView.playMasterButton!.addTarget(self,      action: #selector(playMaster),    forControlEvents: UIControlEvents.TouchUpInside)
-        self.theView.recordChallengeButton!.addTarget(self,       action: #selector(recordChallenge), forControlEvents: UIControlEvents.TouchUpInside)
-        self.theView.playChallengeButton!.addTarget(self,         action: #selector(playChallenge),  forControlEvents: UIControlEvents.TouchUpInside)
+        self.theView.recordMasterButton!.addTarget(self,    action: #selector(recordMaster),   for: .touchUpInside)
+        self.theView.playMasterButton!.addTarget(self,      action: #selector(playMaster),    for: .touchUpInside)
+        self.theView.recordChallengeButton!.addTarget(self,       action: #selector(recordChallenge), for: .touchUpInside)
+        self.theView.playChallengeButton!.addTarget(self,         action: #selector(playChallenge),  for: .touchUpInside)
     }
     
     private func removeButtonHandlers() {
-        self.theView.recordMasterButton!.removeTarget(self,     action: #selector(recordMaster),   forControlEvents: UIControlEvents.TouchUpInside)
-        self.theView.playMasterButton!.removeTarget(self,       action: #selector(playMaster),    forControlEvents: UIControlEvents.TouchUpInside)
-        self.theView.recordChallengeButton!.removeTarget(self,  action: #selector(recordChallenge), forControlEvents: UIControlEvents.TouchUpInside)
-        self.theView.playChallengeButton!.removeTarget(self,    action: #selector(playChallenge),  forControlEvents: UIControlEvents.TouchUpInside)
+        self.theView.recordMasterButton!.removeTarget(self,     action: #selector(recordMaster),   for: .touchUpInside)
+        self.theView.playMasterButton!.removeTarget(self,       action: #selector(playMaster),    for: .touchUpInside)
+        self.theView.recordChallengeButton!.removeTarget(self,  action: #selector(recordChallenge), for: .touchUpInside)
+        self.theView.playChallengeButton!.removeTarget(self,    action: #selector(playChallenge),  for: .touchUpInside)
     }
     
     // MARK: buttonhandler
-    func recordMaster() {
-        self.theView.recordMasterButton!.removeTarget(self,     action: #selector(recordMaster),   forControlEvents: UIControlEvents.TouchUpInside)
-        self.theView.recordMasterButton!.addTarget(self,     action: #selector(stopRecordingMaster),   forControlEvents: UIControlEvents.TouchUpInside)
+    @objc func recordMaster() {
+        self.theView.recordMasterButton!.removeTarget(self,     action: #selector(recordMaster),   for: .touchUpInside)
+        self.theView.recordMasterButton!.addTarget(self,     action: #selector(stopRecordingMaster),   for: .touchUpInside)
         self.theView.showForMasterRecording()
         self.startRecording()
     }
     
-    func stopRecordingMaster() {
-        self.theView.recordMasterButton!.removeTarget(self,     action: #selector(stopRecordingMaster),   forControlEvents: UIControlEvents.TouchUpInside)
+    @objc func stopRecordingMaster() {
+        self.theView.recordMasterButton!.removeTarget(self,     action: #selector(stopRecordingMaster),   for: .touchUpInside)
         self.stopRecording { [unowned self] (path:String) in
             self.masterPath = path;
             self.theView.showDefault()
-            self.theView.recordMasterButton!.addTarget(self,     action: #selector(self.recordMaster),   forControlEvents: UIControlEvents.TouchUpInside)
+            self.theView.recordMasterButton!.addTarget(self,     action: #selector(self.recordMaster),   for: .touchUpInside)
         }
     }
   
-    func playMaster() {
+    @objc func playMaster() {
         if let masterP = self.masterPath {
-            self.theView.playMasterButton!.removeTarget(self,     action: #selector(playMaster),   forControlEvents: UIControlEvents.TouchUpInside)
-            self.theView.playMasterButton!.addTarget(self,     action: #selector(stopPlayingMaster),   forControlEvents: UIControlEvents.TouchUpInside)
+            self.theView.playMasterButton!.removeTarget(self,     action: #selector(playMaster),   for: .touchUpInside)
+            self.theView.playMasterButton!.addTarget(self,     action: #selector(stopPlayingMaster),   for: .touchUpInside)
             self.theView.showForMasterPlaying()
-            self.fileReader = CYFileReader(fileUrl: NSURL(fileURLWithPath:masterP))
+            self.fileReader = CYFileReader(fileUrl: NSURL(fileURLWithPath:masterP) as URL!)
             self.startPlayingFile()
         }
     }
    
-    func stopPlayingMaster() {
+    @objc func stopPlayingMaster() {
         self.stopPlayingFile()
         self.theView.showDefault()
-        self.theView.playMasterButton!.removeTarget(self,     action: #selector(stopPlayingMaster),   forControlEvents: UIControlEvents.TouchUpInside)
-        self.theView.playMasterButton!.addTarget(self,     action: #selector(playMaster),   forControlEvents: UIControlEvents.TouchUpInside)
+        self.theView.playMasterButton!.removeTarget(self,     action: #selector(stopPlayingMaster),   for: .touchUpInside)
+        self.theView.playMasterButton!.addTarget(self,     action: #selector(playMaster),   for: .touchUpInside)
     }
    
-    func recordChallenge() {
-        self.theView.recordChallengeButton!.removeTarget(self,  action: #selector(recordChallenge), forControlEvents: UIControlEvents.TouchUpInside)
-        self.theView.recordChallengeButton!.addTarget(self,     action: #selector(stopRecordingChallenge),   forControlEvents: UIControlEvents.TouchUpInside)
+    @objc func recordChallenge() {
+        self.theView.recordChallengeButton!.removeTarget(self,  action: #selector(recordChallenge), for: .touchUpInside)
+        self.theView.recordChallengeButton!.addTarget(self,     action: #selector(stopRecordingChallenge),   for: .touchUpInside)
         self.theView.showForChallengeRecording()
         self.startRecording()
     }
     
-    func stopRecordingChallenge() {
-        self.theView.recordChallengeButton!.removeTarget(self,     action: #selector(stopRecordingChallenge),   forControlEvents: UIControlEvents.TouchUpInside)
+    @objc func stopRecordingChallenge() {
+        self.theView.recordChallengeButton!.removeTarget(self,     action: #selector(stopRecordingChallenge),   for: .touchUpInside)
         self.stopRecording { [unowned self] (path:String) in
             self.challengePath = path;
             self.theView.showDefault()
-            self.theView.recordChallengeButton!.addTarget(self,     action: #selector(self.recordChallenge),   forControlEvents: UIControlEvents.TouchUpInside)
+            self.theView.recordChallengeButton!.addTarget(self,     action: #selector(self.recordChallenge),   for: .touchUpInside)
         }
     }
 
-    func playChallenge() {
+    @objc func playChallenge() {
         if let challengeP = self.challengePath {
-            self.theView.playChallengeButton!.removeTarget(self,     action: #selector(playChallenge),   forControlEvents: UIControlEvents.TouchUpInside)
-            self.theView.playChallengeButton!.addTarget(self,     action: #selector(stopPlayingChallenge),   forControlEvents: UIControlEvents.TouchUpInside)
+            self.theView.playChallengeButton!.removeTarget(self,     action: #selector(playChallenge),   for: .touchUpInside)
+            self.theView.playChallengeButton!.addTarget(self,     action: #selector(stopPlayingChallenge),   for: .touchUpInside)
             self.theView.showForChallengePlaying()
-            self.fileReader = CYFileReader(fileUrl: NSURL(fileURLWithPath:challengeP))
+            self.fileReader = CYFileReader(fileUrl: NSURL(fileURLWithPath:challengeP) as URL!)
             self.startPlayingFile()
         }
     }
     
-    func stopPlayingChallenge() {
+    @objc func stopPlayingChallenge() {
         self.stopPlayingFile()
         self.theView.showDefault()
-        self.theView.playChallengeButton!.removeTarget(self,     action: #selector(playChallenge),   forControlEvents: UIControlEvents.TouchUpInside)
-        self.theView.playChallengeButton!.addTarget(self,     action: #selector(playChallenge),   forControlEvents: UIControlEvents.TouchUpInside)
+        self.theView.playChallengeButton!.removeTarget(self,     action: #selector(playChallenge),   for: .touchUpInside)
+        self.theView.playChallengeButton!.addTarget(self,     action: #selector(playChallenge),   for: .touchUpInside)
     } 
 
     func startRecording() {
         self.fileReader = nil
         self.stopPlayingFile()
         self.fileWriter = nil
-        CMAudioRecorder.shouldTryToAccessMicrophone { [unowned self] (granted:Bool) -> Void in
+        CMAudioRecorder.shouldTry { [unowned self] (granted:Bool) -> Void in
             if granted {
                 self.fileWriter                             = nil
                 self.fileWriter                             = CYAudioFileWriter(fileName:self.dirPath, directory:self.fileLocalDirectory!)
@@ -199,15 +199,15 @@ class CMAudioRecorderViewController: UIViewController, CYOutputDataSource, CMAud
         }
     }
     
-    func stopRecording(complete:CloseFile) {
+    func stopRecording(complete:@escaping CloseFile) {
         self.audioRecorder?.stopRecordering()
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { [weak self] in
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             while let sb = self?.sampleBuffers.popLast() {
-                self?.fileWriter?.encodeSampleBuffer(sb, isVideo: false);
+                self?.fileWriter?.encodeSampleBuffer(sampleBuffer: sb, isVideo: false);
             }
 
-            self?.fileWriter?.cutRecording({ (path:String) in
-                dispatch_async(dispatch_get_main_queue()) {
+            self?.fileWriter?.cutRecording(complete: { (path:String) in
+                DispatchQueue.main.async { [weak self] in
                     complete(path)
                 }
             })
@@ -215,24 +215,24 @@ class CMAudioRecorderViewController: UIViewController, CYOutputDataSource, CMAud
     }
     
     func startPlayingFile() {
-        output.startOutputUnit()
+        output.startUnit()
     }
     
     func stopPlayingFile() {
-        output.stopOutputUnit()
+        output.stopUnit()
     }
     
     // MARK: CYOutputDataSource
-    func readFrames(frames: UInt32, audioBufferList: UnsafeMutablePointer<AudioBufferList>, bufferSize: UnsafeMutablePointer<UInt32>) {
+    func readFrames(_ frames: UInt32, audioBufferList: UnsafeMutablePointer<AudioBufferList>, bufferSize: UnsafeMutablePointer<UInt32>) {
         if let reader = self.fileReader {
             reader.readFrames(frames, audioBufferList: audioBufferList, bufferSize: bufferSize)
         }
     }
     
     //MARK: CMSampleBufferDelegate
-    func didRenderAudioSampleBuffer(sampleBuffer: CMSampleBuffer!) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            self.sampleBuffers.append(sampleBuffer)
+    func didRenderAudioSampleBuffer(_ sampleBuffer: CMSampleBuffer!) {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            self?.sampleBuffers.append(sampleBuffer)
         }
     }
    
@@ -242,15 +242,15 @@ class CMAudioRecorderViewController: UIViewController, CYOutputDataSource, CMAud
     }
     
 //    // MARK: InteruptionHandlers
-    func willEnterBackground() {
-        backgroundTask                                      = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler({ () -> Void in
+    @objc func willEnterBackground() {
+        backgroundTask                                      = UIApplication.shared.beginBackgroundTask(expirationHandler: { () -> Void in
             
         });
     }
     
-    func willEnterForeground() {
+    @objc func willEnterForeground() {
         if self.backgroundTask != UIBackgroundTaskInvalid {
-            UIApplication.sharedApplication().endBackgroundTask(self.backgroundTask)
+            UIApplication.shared.endBackgroundTask(self.backgroundTask)
             self.backgroundTask                             = UIBackgroundTaskInvalid;
         }
     }
